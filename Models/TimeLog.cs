@@ -1,10 +1,13 @@
-﻿namespace PCAtime.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PCAtime.Models
 {
     public class TimeLog
     {
-        public TimeOnly TimeIn { get; set; }
+        
+        [Key] public TimeOnly TimeIn { get; set; }
         public TimeOnly TimeOut { get; set; }
 
-        public string UserID { get; set; }
+        public required string UserID { get; set; }
     }
 }
