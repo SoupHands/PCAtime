@@ -4,7 +4,7 @@ namespace PCAtime
 {
     public class ApplicationUser : IdentityUser
     {
-        public string RoleName { get; set; }
+        public string RoleName { get; set; } = "intern";
     }
 
 }

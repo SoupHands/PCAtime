@@ -4,7 +4,7 @@ using PCAtime.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Composition;
 using System.Data;
-
+using PCAtime;
 namespace PCAtime.Data
 {
 
@@ -42,6 +42,8 @@ namespace PCAtime.Data
                 new Role { RoleId = 1, RoleName = "Intern" },
                 new Role { RoleId = 2, RoleName = "Supervisor" }
             );
+            modelBuilder.Entity<UserLogins>()
+                .HasKey(u => u.UserId);
         }
 
 
