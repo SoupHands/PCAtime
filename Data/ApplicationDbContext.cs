@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PCAtime.Models;
+using System.ComponentModel.DataAnnotations;
 using System.Composition;
 using System.Data;
 

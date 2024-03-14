@@ -2,6 +2,7 @@
 using PCAtime.Data;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 
 public class Startup(IConfiguration configuration)
 {
@@ -11,6 +12,10 @@ public class Startup(IConfiguration configuration)
     {
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+     .AddEntityFrameworkStores<ApplicationDbContext>()
+     .AddDefaultTokenProviders();
     }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
     {
