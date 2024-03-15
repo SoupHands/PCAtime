@@ -19,6 +19,11 @@ public class Startup(IConfiguration configuration)
     }
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
     {
+
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();

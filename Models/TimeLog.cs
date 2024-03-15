@@ -2,12 +2,12 @@
 
 namespace PCAtime.Models
 {
-    public class TimeLog
+    public class TimesheetEntry
     {
-        
-        [Key] public TimeOnly TimeIn { get; set; }
-        public TimeOnly TimeOut { get; set; }
-
-        public required string UserID { get; set; }
+        public int Id { get; set; }
+        public DateTime Date { get; set; }
+        public string? TaskDescription { get; set; }
+        public int HoursWorked { get; set; }
     }
+
 }

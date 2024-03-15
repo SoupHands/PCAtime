@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
-using PCAtime.Models; 
+//using PCAtime.Models;
+using PCAtime.Data;
 public class AccountController : Controller
 {
-    private readonly UserManager<ApplicationUser> _userManager;
-    private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly UserManager<PCAtime.Data.ApplicationUser> _userManager;
+    private readonly SignInManager<PCAtime.Data.ApplicationUser> _signInManager;
 
-    public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+    public AccountController(UserManager<PCAtime.Data.ApplicationUser> userManager, SignInManager<PCAtime.Data.ApplicationUser> signInManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
@@ -46,8 +47,8 @@ public class AccountController : Controller
     public async Task<IActionResult> Register(RegisterViewModel model)
     {
         if (ModelState.IsValid)
-        {
-            var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Password= model.Password };
+        { 
+            var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
@@ -56,8 +57,10 @@ public class AccountController : Controller
             }
             AddErrors(result);
         }
+
         return View(model);
     }
+
 
     [HttpPost]
     [ValidateAntiForgeryToken]

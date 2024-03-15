@@ -1,0 +1,27 @@
+﻿@page
+@{
+}
+@model PCAtime.Models.TimesheetEntry
+
+<div class="container mt-5">
+    <h2>Create Timesheet Entry</h2>
+
+    <form asp-action="Create">
+        <div class="mb-3">
+            <label asp-for="Date" class="form-label"></label>
+            <input asp-for="Date" class="form-control" type="date" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="TaskDescription" class="form-label"></label>
+            <input asp-for="TaskDescription" class="form-control" />
+            <span asp-validation-for="TaskDescription" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="HoursWorked" class="form-label"></label>
+            <input asp-for="HoursWorked" class="form-control" type="number" min="0" />
+            <span asp-validation-for="HoursWorked" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>

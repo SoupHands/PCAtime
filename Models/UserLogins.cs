@@ -7,7 +7,7 @@ namespace PCAtime.Models
     {
         public UserLogins()
         {
-            Time = new List<TimeLog>();
+            Time = new List<TimesheetEntry>();
 
         }
         public string Email { get; set; } = string.Empty;
@@ -15,7 +15,7 @@ namespace PCAtime.Models
         public string Username { get; set; } = string.Empty;
         public string Role { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
-        public List<TimeLog> Time { get; set; }
+        public List<TimesheetEntry> Time { get; set; }
 
 
     }

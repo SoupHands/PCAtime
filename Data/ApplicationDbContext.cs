@@ -5,14 +5,32 @@ using System.ComponentModel.DataAnnotations;
 using System.Composition;
 using System.Data;
 using PCAtime;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace PCAtime.Data
 {
 
 
-    public class ApplicationDbContext : DbContext
+    public class ApplicationUser : IdentityUser
     {
+        public required string Email { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public ApplicationUser(string email)
+        {
+            Email = email.ToString();
+        }
+        public required string Password { get; set; }
+
+        public bool IsEmailConfirmed { get; set; } = false;
+        public bool IsPasswordConfirmed { get; set;} = false;
+
+    }
+
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    {
+        
+         
+            protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
                 "Data Source = (locadb)\\MSSQLLocalDB; Initial Catalog = UserDatabase"
@@ -26,16 +44,13 @@ namespace PCAtime.Data
 
         public ApplicationDbContext()
         {
+
         }
 
         public DbSet<UserLogins> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<TimeLog> TimeEntries
-        {
-            get; set;
 
-            // public DbSet<Report> Reports { get; set; }
-        }
+        public DbSet<TimesheetEntry> TimeSheetEntries { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Role>().HasData(
